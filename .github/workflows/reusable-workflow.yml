@@ -1,19 +1,17 @@
 name: Reusable Workflow
 
+# This is required to make it reusable
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       node:
         required: true
-        type: string
+        type: number
 
 jobs:
-  build:
+  reusable-job:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
-
       - name: Output the input value
-        run: |
-          echo "The node version to use is: ${{ inputs.node }}"
+        run: echo "Node version is ${{ inputs.node }}"
